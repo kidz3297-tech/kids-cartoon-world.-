@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b20">
+<meta name="description" content="Kids Cartoon World — Explore, learn, draw, play and discover a magical world of learning!">
+<title>Kids Cartoon World | Explore the Magic</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --bg: #090b20;
+  --panel: rgba(255,255,255,.075);
+  --border: rgba(255,255,255,.12);
+  --text: #f8f7ff;
+  --muted: #a7accd;
+  --pink: #ff62b0;
+  --blue: #63b9ff;
+  --purple: #a58bff;
+  --green: #57efb2;
+  --yellow: #ffdc75;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 15% 0%, #24235a 0, transparent 35%),
+    radial-gradient(ellipse at 100% 30%, #24133e 0, transparent 32%),
+    var(--bg);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 4px;
+}
+
+a { color: inherit; text-decoration: none; }
+
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: .55;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .15; transform: scale(.7); }
+  to { opacity: .85; transform: scale(1.5); }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(9,11,32,.82);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+}
+
+.nav {
+  max-width: 1250px;
+  padding: 14px 22px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Baloo 2', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.logo-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+  border-radius: 15px;
+  box-shadow: 0 0 28px #a58bff40;
+}
+
+.logo span:last-child {
+  background: linear-gradient(90deg, #fff, #bdaaff, #ff9ed2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.nav-links a:hover { color: white; }
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffb4d9, #9b8bff);
+}
+
+main {
+  max-width: 1250px;
+  padding: 30px 22px 70px;
+  margin: auto;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 20px;
+  min-height: 400px;
+  padding: 45px;
+  border: 1px solid var(--border);
+  border-radius: 34px;
+  background:
+    radial-gradient(ellipse at 90% 50%, #8b6cff30, transparent 45%),
+    linear-gradient(125deg, #211c49, #14162f 60%, #24204b);
+  box-shadow: 0 25px 100px #00000025;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border: 1px solid #ffffff12;
+  border-radius: 50%;
+  right: 5%;
+  top: 5%;
+  box-shadow: 0 0 0 35px #ffffff05, 0 0 0 70px #ffffff03;
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  border: 1px solid #a58bff50;
+  background: #a58bff15;
+  color: #d2c5ff;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: clamp(38px, 5.4vw, 69px);
+  line-height: .99;
+  margin: 23px 0 15px;
+  letter-spacing: -1.5px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ff8dc8, #b3a0ff, #72d7ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 490px;
+  color: #bfc3df;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.btn {
+  border: 0;
+  padding: 13px 20px;
+  border-radius: 15px;
+  font-weight: 900;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.btn-primary {
+  color: #11102a;
+  background: linear-gradient(100deg, #ff91cb, #b8a4ff);
+  box-shadow: 0 8px 30px #bb83ff30;
+}
+
+.btn-secondary {
+  color: white;
+  background: #ffffff0b;
+  border: 1px solid var(--border);
+}
+
+.hero-art {
+  position: relative;
+  min-height: 285px;
+  display: grid;
+  place-items: center;
+}
+
+.planet {
+  position: absolute;
+  width: 235px;
+  height: 235px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #ffb3d7, #ab82ff 42%, #4b64db 75%, #282b77);
+  box-shadow: inset -22px -20px 40px #17164c70, 0 0 65px #987dff45;
+  animation: float 5s ease-in-out infinite;
+}
+
+.planet::before {
+  content: "";
+  position: absolute;
+  width: 310px;
+  height: 78px;
+  border: 13px solid #d9c6ff;
+  border-left-color: #ffb4da;
+  border-right-color: #6dcbff;
+  border-radius: 50%;
+  transform: rotate(-22deg);
+  left: -38px;
+  top: 83px;
+  box-shadow: 0 0 25px #ad8cff40;
+}
+
+.planet-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 92px;
+  filter: drop-shadow(0 8px 10px #21133a45);
+}
+
+.orbit-star {
+  position: absolute;
+  font-size: 36px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.s1 { top: 5%; right: 8%; }
+.s2 { left: 4%; top: 30%; animation-delay: -1s; }
+.s3 { right: 6%; bottom: 5%; animation-delay: -2s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 23px 0 42px;
+}
+
+.stat {
+  padding: 19px;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.stat-icon {
+  font-size: 26px;
+  width: 49px;
+  height: 49px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #ffffff0b;
+  border-radius: 15px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.stat small { color: var(--muted); }
+
+.section { margin-top: 43px; scroll-margin-top: 95px; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.section-head h2 {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: clamp(25px, 3vw, 35px);
+  line-height: 1.1;
+  margin: 0 0 5px;
+}
+
+.section-head p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.pill {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: #d7d9f1;
+  border-radius: 30px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 23px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--panel);
+  transition: transform .25s, border-color .25s, background .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #a58bff70;
+  background: #ffffff0d;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-emoji {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  font-size: 32px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #a58bff25, #ff62b015);
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 900;
+  padding: 6px 10px;
+  border-radius: 30px;
+  color: #cbbfff;
+  background: #a58bff18;
+}
+
+.card h3 {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: 23px;
+  margin: 18px 0 5px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 45px;
+  margin: 0 0 19px;
+}
+
+.card .btn { width: 100%; }
+
+.card-pink .card-emoji { background: #ff62b018; }
+.card-blue .card-emoji { background: #63b9ff18; }
+.card-green .card-emoji { background: #57efb218; }
+.card-yellow .card-emoji { background: #ffdc7518; }
+
+.panel {
+  padding: 25px;
+  border-radius: 25px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+select, input[type="text"] {
+  min-width: 0;
+  color: white;
+  background: #15172f;
+  border: 1px solid var(--border);
+  padding: 11px 13px;
+  border-radius: 12px;
+}
+
+select option { background: #15172f; }
+
+.quiz-question {
+  font-family: 'Baloo 2', sans-serif;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.3;
+  margin: 16px 0 22px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.answer {
+  text-align: left;
+  color: white;
+  background: #ffffff08;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 14px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.answer:hover { border-color: var(--purple); }
+.answer.correct { background: #57efb220; border-color: var(--green); }
+.answer.wrong { background: #ff6c8a20; border-color: #ff6c8a; }
+
+.feedback {
+  min-height: 28px;
+  margin: 15px 0;
+  color: var(--green);
+  font-weight: 900;
+}
+
+.progress {
+  height: 7px;
+  background: #ffffff12;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 16px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+  transition: width .3s;
+}
+
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+}
+
+.learn-item {
+  text-align: center;
+  padding: 19px 12px;
+  border: 1px solid var(--border);
+  background: #ffffff05;
+  border-radius: 18px;
+}
+
+.learn-item .big { font-size: 35px; }
+.learn-item h3 { font-size: 16px; margin: 10px 0 5px; }
+.learn-item p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+.canvas-wrap {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+}
+
+#drawing {
+  display: block;
+  width: 100%;
+  height: 320px;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.draw-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.draw-controls label { font-size: 13px; color: var(--muted); }
+.draw-controls input[type="range"] { width: 100px; }
+.draw-controls input[type="color"] {
+  width: 40px;
+  height: 36px;
+  border: none;
+  background: transparent;
+}
+
+.achievements {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+}
+
+.badge {
+  padding: 18px 12px;
+  text-align: center;
+  border: 1px solid var(--border);
+  background: #ffffff05;
+  border-radius: 18px;
+  opacity: .45;
+  filter: grayscale(1);
+}
+
+.badge.unlocked { opacity: 1; filter: none; border-color: #ffdc7555; }
+.badge div { font-size: 31px; }
+.badge strong { display: block; margin: 9px 0 4px; }
+.badge small { color: var(--muted); }
+
+footer {
+  margin-top: 60px;
+  padding: 32px 10px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.8;
+}
+
+footer strong { color: white; }
+
+.toast {
+  position: fixed;
+  z-index: 50;
+  bottom: 22px;
+  left: 50%;
+  transform: translate(-50%, 120px);
+  padding: 13px 20px;
+  border: 1px solid var(--border);
+  background: #252346;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px #0005;
+  font-weight: 800;
+  transition: transform .3s;
+  text-align: center;
+  width: max-content;
+  max-width: calc(100% - 30px);
+}
+
+.toast.show { transform: translate(-50%, 0); }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #050615d9;
+  backdrop-filter: blur(10px);
+  display: none;
+  place-items: center;
+  padding: 20px;
+}
+
+.modal.open { display: grid; }
+
+.modal-box {
+  max-width: 460px;
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 27px;
+  background: #191a3a;
+  box-shadow: 0 20px 100px #0007;
+}
+
+.modal-box .big { font-size: 55px; }
+.modal-box h2 { font-family: 'Baloo 2', sans-serif; font-size: 29px; }
+.modal-box p { color: var(--muted); line-height: 1.7; }
+.modal-box input { width: 100%; margin: 12px 0; }
+
+@media (max-width: 900px) {
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 12px; }
+  .hero { padding: 30px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .learning-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .nav { padding: 11px 14px; }
+  .logo { font-size: 17px; }
+  .logo-icon { width: 36px; height: 36px; }
+  .nav-links { display: none; }
+  main { padding: 18px 14px 45px; }
+  .hero { grid-template-columns: 1fr; padding: 26px 22px; border-radius: 25px; }
+  .hero h1 { font-size: 48px; }
+  .hero-art { min-height: 235px; }
+  .planet { width: 175px; height: 175px; }
+  .planet::before { width: 235px; height: 60px; left: -30px; top: 60px; border-width: 10px; }
+  .planet-face { font-size: 70px; }
+  .stats { gap: 10px; }
+  .stat { padding: 12px; gap: 9px; }
+  .stat-icon { width: 39px; height: 39px; font-size: 22px; }
+  .stat strong { font-size: 18px; }
+  .stat small { font-size: 11px; }
+  .grid { grid-template-columns: 1fr; }
+  .section-head { align-items: start; }
+  .panel { padding: 16px; }
+  .answers { grid-template-columns: 1fr; }
+  .learning-grid { grid-template-columns: repeat(2, 1fr); }
+  .achievements { grid-template-columns: repeat(2, 1fr); }
+  #drawing { height: 270px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div id="stars" aria-hidden="true"></div>
+
+<header>
+  <nav class="nav">
+    <a href="#home" class="logo" aria-label="Kids Cartoon World home">
+      <span class="logo-icon">🌈</span>
+      <span>Kids Cartoon World</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#explore">Explore</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#learn">Learn</a>
+      <a href="#draw">Draw</a>
+    </div>
+
+    <button class="profile" id="profileButton" type="button">
+      <span class="avatar">🧑‍🚀</span>
+      <span id="navName">Explorer</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div>
+      <span class="eyebrow">✨ YOUR UNIVERSE OF FUN</span>
+      <h1>Little minds.<br><span class="gradient-text">Big adventures.</span></h1>
+      <p>
+        Welcome to a magical universe where curiosity becomes an adventure!
+        Play fun quizzes, discover amazing facts, create colorful art and
+        collect rewards as you learn.
+      </p>
+      <div class="actions">
+        <button class="btn btn-primary" id="startButton">🚀 Start Exploring</button>
+        <button class="btn btn-secondary" id="heroQuizButton">🧠 Play a Quiz</button>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-label="A magical smiling planet">
+      <span class="orbit-star s1">⭐</span>
+      <span class="orbit-star s2">✨</span>
+      <span class="orbit-star s3">🪐</span>
+      <div class="planet">
+        <div class="planet-face">😊</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats" aria-label="Your progress">
+    <div class="stat">
+      <div class="stat-icon">⭐</div>
+      <div><strong id="points">0</strong><small>Magic points</small></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">🧩</div>
+      <div><strong id="answered">0</strong><small>Quiz answers</small></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">🏆</div>
+      <div><strong id="unlocked">0/4</strong><small>Achievements</small></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon">🎨</div>
+      <div><strong id="artCount">0</strong><small>Artworks saved</small></div>
+    </div>
+  </section>
+
+  <section class="section" id="explore">
+    <div class="section-head">
+      <div>
+        <h2>Explore your universe 🌌</h2>
+        <p>Choose your next adventure!</p>
+      </div>
+      <span class="pill">6 EXPERIENCES</span>
+    </div>
+
+    <div class="grid">
+      <article class="card card-pink">
+        <div class="card-top">
+          <div class="card-emoji">🧠</div><span class="tag">THINK & WIN</span>
+        </div>
+        <h3>Brainy Quiz</h3>
+        <p>Test your knowledge with fun questions about science, nature, space and more.</p>
+        <button class="btn btn-primary" data-go="quiz">Play Quiz →</button>
+      </article>
+
+      <article class="card card-blue">
+        <div class="card-top">
+          <div class="card-emoji">🌍</div><span class="tag">DISCOVER</span>
+        </div>
+        <h3>Wonder World</h3>
+        <p>Explore fascinating facts about our planet, the human body and the universe.</p>
+        <button class="btn btn-secondary" data-go="learn">Discover Facts →</button>
+      </article>
+
+      <article class="card card-green">
+        <div class="card-top">
+          <div class="card-emoji">🎨</div><span class="tag">GET CREATIVE</span>
+        </div>
+        <h3>Drawing Studio</h3>
+        <p>Make your own masterpiece using colors, different brush sizes and your imagination.</p>
+        <button class="btn btn-secondary" data-go="draw">Create Art →</button>
+      </article>
+
+      <article class="card card-yellow">
+        <div class="card-top">
+          <div class="card-emoji">🔢</div><span class="tag">LEVEL UP</span>
+        </div>
+        <h3>Math Challenge</h3>
+        <p>Sharpen your maths skills with a new arithmetic challenge every round.</p>
+        <button class="btn btn-secondary" id="mathButton">Start Challenge →</button>
+      </article>
+
+      <article class="card card-blue">
+        <div class="card-top">
+          <div class="card-emoji">🔤</div><span class="tag">WORD POWER</span>
+        </div>
+        <h3>Word Explorer</h3>
+        <p>Discover useful English words and their meanings in a simple, friendly way.</p>
+        <button class="btn btn-secondary" data-go="words">Explore Words →</button>
+      </article>
+
+      <article class="card card-pink">
+        <div class="card-top">
+          <div class="card-emoji">🏆</div><span class="tag">YOUR JOURNEY</span>
+        </div>
+        <h3>Achievement Hall</h3>
+        <p>See which milestones you have unlocked while exploring your learning universe.</p>
+        <button class="btn btn-secondary" data-go="achievements">View Rewards →</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-head">
+      <div>
+        <h2>Brainy Quiz 🧠</h2>
+        <p>Pick an answer and earn magic points!</p>
+      </div>
+      <span class="pill" id="quizCounter">QUESTION 1</span>
+    </div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <select id="subject" aria-label="Quiz subject">
+          <option value="all">🌈 All Subjects</option>
+          <option value="science">🔬 Science</option>
+          <option value="nature">🌿 Nature</option>
+          <option value="space">🚀 Space</option>
+          <option value="math">🔢 Maths</option>
+        </select>
+        <button class="btn btn-secondary" id="newQuiz">🔄 New Quiz</button>
+      </div>
+
+      <div class="progress"><div class="progress-fill" id="quizProgress"></div></div>
+      <h3 class="quiz-question" id="question">Loading your adventure...</h3>
+     
